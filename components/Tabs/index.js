@@ -42,14 +42,14 @@ function tabMaker(value) {
 }
 
 // creates tabs from whatever is returned from response.data.topics
-function generateTabsFromAPI() {
+function generateTabsFromAPI(parent) {
 
     axios.get("https://lambda-times-backend.herokuapp.com/topics")
         .then(response => {
             response.data.topics.forEach(value => {
-                const tab = tabMaker(value)
-                divTopics.appendChild(tab);
-            })
+                const tab = tabMaker(value);
+                parent.appendChild(tab);
+            });
         })
         .catch(error => {
             console.log("Error fetching data in generateTabsFromAPI()");
