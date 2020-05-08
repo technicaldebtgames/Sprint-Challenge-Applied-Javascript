@@ -68,19 +68,19 @@ function displayDataInConsole() {
             //    })
             //} // causes error to be thrown
 
-            const categories = response.data.articles;
-            for (let i = 0; i < categories.length; i++){
-                console.log(categories[i]);
-            } // causes error to be thrown
+            //const categories = response.data.articles;
+            //for (let i = 0; i < categories.length; i++){
+            //    console.log(categories[i]);
+            //} // no data output, 0 length array/object
 
             //console.log(categories);
             
             // End Another test section.
             //
 
-            /*console.log(response.data.articles);
-            console.log(response.data.articles.bootstrap); // these work fine
-            */
+            console.log(response.data.articles);
+            console.log(response.data.articles.bootstrap); // these work fine, so I will just call them manually
+            
         })
         .catch(error => {
             console.log("There was an error fetching data from https://lambda-times-backend.herokuapp.com/articles");
