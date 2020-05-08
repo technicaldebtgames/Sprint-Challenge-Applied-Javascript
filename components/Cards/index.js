@@ -25,14 +25,62 @@ function displayDataInConsole() {
     axios.get("https://lambda-times-backend.herokuapp.com/articles")
         .then(response => {
             console.log("Data from https://lambda-times-backend.herokuapp.com/articles:");
+            
+            //
             //response.data.articles.forEach(category => {
             //    console.log(category);
                 //category.forEach(value => {
                 //    console.log(value);
                 //});
             //}); // this doesn't work and I am not sure why
-            console.log(response.data.articles);
+            //
+
+            //
+            //for (let i = 0; i < response.data.articles.length; i++) {
+            //    console.log(articles[i]);
+            //} // also does not work, probably because articles doesn't have a length property?
+            //
+
+            //
+            //response.data.articles.forEach(value => {
+            //    console.log(value);
+            //}); // causes error as well
+            //
+
+            //
+            //Array.from(response.data.articles).forEach(value => {
+            //    console.log(value);
+            //}); // no error, doesn't log data
+            //
+
+            //
+            // Another test section:
+            
+            //const categories = Array.from(response.data.articles); // creates an array of 0 length w no items
+            
+            //let categories = response.data.articles; // tried let, const, var
+            //categories = Array.from(categories); // creates a 0 length array as well
+
+            //const categories = response.data.articles;
+            //for (const val in categories){
+            //    val.forEach(item => {
+            //        console.log(item);
+            //    })
+            //} // causes error to be thrown
+
+            const categories = response.data.articles;
+            for (let i = 0; i < categories.length; i++){
+                console.log(categories[i]);
+            } // causes error to be thrown
+
+            //console.log(categories);
+            
+            // End Another test section.
+            //
+
+            /*console.log(response.data.articles);
             console.log(response.data.articles.bootstrap); // these work fine
+            */
         })
         .catch(error => {
             console.log("There was an error fetching data from https://lambda-times-backend.herokuapp.com/articles");
@@ -87,12 +135,6 @@ function generateCardsFromAPI(parent) {
 
     axios.get("https://lambda-times-backend.herokuapp.com/articles")
         .then(response => {
-            //Array.from(response.data.articles).forEach(category => {
-            //    Array.from(category).forEach(value => {
-            //        const card = cardMaker(value);
-            //        parent.appendChild(card);
-            //    });
-            //}); // these don't work and I am not sure why, tried with/without Array.from()
             response.data.articles.bootstrap.forEach(value => {
                 const card = cardMaker(value);
                 parent.appendChild(card);
@@ -112,7 +154,9 @@ function generateCardsFromAPI(parent) {
             response.data.articles.technology.forEach(value => {
                 const card = cardMaker(value);
                 parent.appendChild(card);
-            });
+            }); // I don't like calling them like this but I am not sure what the solution is to
+                // not being able to have categories be iterated over (shown above in the data output
+                // to console function).
         })
         .catch(error => {
             console.log("Error fetching data in generateCardsFromAPI()");
